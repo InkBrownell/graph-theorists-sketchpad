@@ -1,12 +1,14 @@
 import React, {useRef, useState} from 'react';
 import './Field.css';
 
-import VertexComponent from "./Vertex"
+import Vertex from "./Vertex"
+import Edge from './Edge'
 import ClickAction from "./features/clickAction/ClickAction";
 
 function Field(props) {
     const {clickAction} = props
     const [dragging, setDragging] = useState(null);
+    const [startEdge, setStartEdge] = useState(null);
     const [vertices, setVertices] = useState([]);
     const [edges, setEdges] = useState([])
     const root = useRef()
@@ -15,6 +17,12 @@ function Field(props) {
         const copy = [...vertices];
         copy.push(newVertex)
         setVertices(copy);
+    }
+
+    const addEdge = (newEdge) => {
+        const copy = [...edges];
+        copy.push(newEdge)
+        setEdges(copy);
     }
 
     const onMouseDown = (event) => {
@@ -28,7 +36,9 @@ function Field(props) {
     const onVertexMouseDown = (event, index) => {
         event.stopPropagation()
         if (clickAction === ClickAction.SELECT) {
-            startDrag(event, index)
+            startDrag(index)
+        } else if (clickAction === ClickAction.ADD_UNDIRECTED_EDGE) {
+            startAddEdge(index)
         }
     }
 
@@ -38,14 +48,22 @@ function Field(props) {
         setVertices(copy);
     }
 
-    const startDrag = (event, index) => {
-        event.stopPropagation()
+    const startDrag = (index) => {
         setDragging(index)
     }
 
     const stopDrag = (event) => {
         event.preventDefault()
         setDragging(null)
+    }
+
+    const startAddEdge = (index) => {
+        if (startEdge === null) {
+            setStartEdge(index)
+        } else {
+            addEdge({endpoints: [vertices[startEdge], vertices[index]]})
+            setStartEdge(null)
+        }
     }
 
     const onMouseMove = (event) => {
@@ -64,11 +82,22 @@ function Field(props) {
             ref={root}
         >
             {vertices.map((vertex, index) => {
-                return (<VertexComponent
-                    vertex={vertex}
-                    key={index}
-                    onMouseDown={(event) => onVertexMouseDown(event, index)}
-                />)
+                return (
+                    <Vertex
+                        className={index === startEdge ? 'Vertex-Selected' : ''}
+                        vertex={vertex}
+                        key={index}
+                        onMouseDown={(event) => onVertexMouseDown(event, index)}
+                    />
+                )
+            })}
+            {edges.map((edge, index) => {
+                return (
+                    <Edge
+                        edge={edge}
+                        key={index}
+                    />
+                )
             })}
         </div>
     );
