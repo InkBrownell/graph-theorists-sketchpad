@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import graphReducer from '../features/graph/graphSlice'
+import clickActionReducer from '../features/clickAction/clickActionSlice'
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
-  },
+    graph: graphReducer,
+    clickAction: clickActionReducer
+  }
 });
