@@ -124,6 +124,7 @@ function Field(props) {
             onMouseUp={stopDrag}
             ref={root}
         >
+
             {vertices.map((vertex, index) => {
                 return (
                     <Vertex
