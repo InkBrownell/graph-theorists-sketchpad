@@ -2,7 +2,7 @@ import React from "react";
 import './Edge.css'
 
 function Edge(props) {
-    const {edge} = props
+    const {edge, onMouseDown} = props
     const [start, end] = edge.endpoints
     const [x1, y1] = start.position
     const [x2, y2] = end.position
@@ -12,17 +12,18 @@ function Edge(props) {
     }
 
     return (
-        <svg className='Edge'>
-            <path
-                className='Edge-Path'
-                fill='none'
-                stroke='black'
-                strokeWidth='3'
-                d={
-                    `M ${x1 - rem2px(10-1)} ${y1}
-                    L ${x2 - rem2px(10-1)} ${y2}`
-                }/>
-        </svg>
+        <path
+            onMouseDown={onMouseDown}
+            className='Edge-Path'
+            fill='transparent'
+            stroke='black'
+            strokeWidth='6'
+
+            d={
+                `M ${x1 - rem2px(10 - 1)} ${y1}
+                 L ${x2 - rem2px(10 - 1)} ${y2}`
+            }
+        />
     )
 
 

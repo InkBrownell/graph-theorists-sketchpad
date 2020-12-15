@@ -2,8 +2,8 @@ import React, {useRef, useState} from 'react';
 import './Field.css';
 
 import Vertex from "./Vertex"
-import Edge from './Edge'
 import ClickAction from "./features/clickAction/ClickAction";
+import EdgeContainer from "./EdgeContainer";
 
 function Field(props) {
     const {clickAction} = props
@@ -13,15 +13,35 @@ function Field(props) {
     const [edges, setEdges] = useState([])
     const root = useRef()
 
+    const edgesWithEndpoint = (vertex) => {
+        return edges.filter((edge) => edge.endpoints.includes(vertex))
+    }
+
     const addVertex = (newVertex) => {
         const copy = [...vertices];
         copy.push(newVertex)
         setVertices(copy);
     }
 
+    const removeVertex = (index) => {
+        const vertex = vertices[index];
+        const edgesToRemove = edgesWithEndpoint(vertex);
+        const edgeCopy = [...edges].filter((edge) => !edgesToRemove.includes(edge))
+        setEdges(edgeCopy)
+        const vertexCopy = [...vertices];
+        vertexCopy.splice(index, 1);
+        setVertices(vertexCopy);
+    }
+
     const addEdge = (newEdge) => {
         const copy = [...edges];
         copy.push(newEdge)
+        setEdges(copy);
+    }
+
+    const removeEdge = (index) => {
+        const copy = [...edges];
+        copy.splice(index, 1)
         setEdges(copy);
     }
 
@@ -39,6 +59,16 @@ function Field(props) {
             startDrag(index)
         } else if (clickAction === ClickAction.ADD_UNDIRECTED_EDGE) {
             startAddEdge(index)
+        } else if (clickAction === ClickAction.DELETE) {
+            removeVertex(index)
+        }
+    }
+
+    const onEdgeMouseDown = (event, index) => {
+
+        if (clickAction === ClickAction.DELETE) {
+            event.stopPropagation()
+            removeEdge(index)
         }
     }
 
@@ -91,14 +121,10 @@ function Field(props) {
                     />
                 )
             })}
-            {edges.map((edge, index) => {
-                return (
-                    <Edge
-                        edge={edge}
-                        key={index}
-                    />
-                )
-            })}
+            <EdgeContainer
+                edges={edges}
+                onMouseDown={onEdgeMouseDown}
+            />
         </div>
     );
 }
