@@ -1,5 +1,6 @@
 .SideBarButton {
-    width: 100%
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .SideBarButton-Name {

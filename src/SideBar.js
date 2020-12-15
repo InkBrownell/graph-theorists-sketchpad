@@ -3,16 +3,17 @@ import './SideBar.css'
 import SideBarButton from "./SideBarButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faDotCircle,
+    faCircle,
     faLongArrowAltRight,
-    faMousePointer,
+    faMousePointer, faPaintBrush,
     faProjectDiagram,
     faTrash
 } from "@fortawesome/free-solid-svg-icons";
-import ClickAction from "./features/clickAction/ClickAction";
+import ClickAction from "./ClickAction";
+import {BlockPicker} from "react-color";
 
 function SideBar(props) {
-    const {clickAction, setClickAction} = props
+    const {clickAction, setClickAction, color, setColor} = props
 
     const makeButton = ({icon, name, onClickAction}) => {
         return (
@@ -29,15 +30,19 @@ function SideBar(props) {
 
     const buttonData = [
         {icon: <FontAwesomeIcon icon={faMousePointer}/>, name: 'Select', onClickAction: ClickAction.SELECT},
-        {icon: <FontAwesomeIcon icon={faDotCircle}/>, name: 'New Vertex', onClickAction: ClickAction.ADD_VERTEX},
-        {icon: <FontAwesomeIcon icon={faLongArrowAltRight}/>, name: 'New Directed Edge', onClickAction: ClickAction.ADD_DIRECTED_EDGE},
-        {icon: <FontAwesomeIcon icon={faProjectDiagram}/>, name: 'New Undirected Edge', onClickAction: ClickAction.ADD_UNDIRECTED_EDGE},
-        {icon: <FontAwesomeIcon icon={faTrash}/>, name: 'Delete', onClickAction: ClickAction.DELETE}
+        {icon: <FontAwesomeIcon icon={faCircle}/>, name: 'New Vertex', onClickAction: ClickAction.ADD_VERTEX},
+        {icon: <FontAwesomeIcon icon={faProjectDiagram}/>, name: 'New Edge', onClickAction: ClickAction.ADD_EDGE},
+        {icon: <FontAwesomeIcon icon={faTrash}/>, name: 'Delete', onClickAction: ClickAction.DELETE},
+        {icon: <FontAwesomeIcon icon={faPaintBrush}/>, name: 'Color', onClickAction: ClickAction.COLOR}
     ]
 
     return (
         <div className="SideBar">
             {buttonData.map(element => makeButton(element))}
+            <BlockPicker
+                color={color}
+                onChange={(color, event) => setColor(color.hex)}
+                width='100%'/>
         </div>
     );
 }

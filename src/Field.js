@@ -2,11 +2,11 @@ import React, {useRef, useState} from 'react';
 import './Field.css';
 
 import Vertex from "./Vertex"
-import ClickAction from "./features/clickAction/ClickAction";
+import ClickAction from "./ClickAction";
 import EdgeContainer from "./EdgeContainer";
 
 function Field(props) {
-    const {clickAction} = props
+    const {clickAction, color} = props
     const [dragging, setDragging] = useState(null);
     const [startEdge, setStartEdge] = useState(null);
     const [vertices, setVertices] = useState([]);
@@ -33,6 +33,12 @@ function Field(props) {
         setVertices(vertexCopy);
     }
 
+    const colorVertex = (index, color) => {
+        const copy = [...vertices];
+        copy[index].color = color;
+        setVertices(copy);
+    }
+
     const addEdge = (newEdge) => {
         const copy = [...edges];
         copy.push(newEdge)
@@ -45,30 +51,37 @@ function Field(props) {
         setEdges(copy);
     }
 
+    const colorEdge = (index, color) => {
+        const copy = [...edges];
+        copy[index].color = color;
+        setEdges(copy);
+    }
+
     const onMouseDown = (event) => {
         if (clickAction === ClickAction.ADD_VERTEX) {
             const x = event.clientX;
             const y = event.clientY;
-            addVertex({position: [x, y]});
+            addVertex({position: [x, y], color: color});
         }
     }
 
     const onVertexMouseDown = (event, index) => {
-        event.stopPropagation()
         if (clickAction === ClickAction.SELECT) {
             startDrag(index)
-        } else if (clickAction === ClickAction.ADD_UNDIRECTED_EDGE) {
+        } else if (clickAction === ClickAction.ADD_EDGE) {
             startAddEdge(index)
         } else if (clickAction === ClickAction.DELETE) {
             removeVertex(index)
+        } else if (clickAction === ClickAction.COLOR) {
+            colorVertex(index, color)
         }
     }
 
     const onEdgeMouseDown = (event, index) => {
-
         if (clickAction === ClickAction.DELETE) {
-            event.stopPropagation()
             removeEdge(index)
+        } else if (clickAction === ClickAction.COLOR) {
+            colorEdge(index, color)
         }
     }
 
@@ -91,7 +104,7 @@ function Field(props) {
         if (startEdge === null) {
             setStartEdge(index)
         } else {
-            addEdge({endpoints: [vertices[startEdge], vertices[index]]})
+            addEdge({endpoints: [vertices[startEdge], vertices[index]], color: color})
             setStartEdge(null)
         }
     }
