@@ -1,17 +1,15 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import './SideBarButton.css'
-import {connect} from "react-redux";
-import {doCustom} from "./features/clickAction/clickActionSlice";
 
 function SideBarButton(props) {
-    const {icon, name, clickAction, currentClickAction, doCustom} = props
+    const {icon, name, clickAction, onClickAction, setClickAction} = props
     return (
         <Button
             className="SideBarButton"
-            variant="primary"
-            onClick={() => doCustom(clickAction)}
-            active={clickAction === currentClickAction}
+            variant='primary'
+            onClick={() => setClickAction(onClickAction)}
+            active={clickAction === onClickAction}
         >
             {icon}
             <div className={'SideBarButton-Name'}>{name}</div>
@@ -19,10 +17,4 @@ function SideBarButton(props) {
     )
 };
 
-const mapStateToProps = (state) => {
-    return {currentClickAction: state.clickAction}
-};
-
-const mapDispatchToProps = {doCustom};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SideBarButton);
+export default SideBarButton;

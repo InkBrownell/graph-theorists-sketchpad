@@ -2,8 +2,10 @@ import React, {useRef, useState} from 'react';
 import './Field.css';
 
 import VertexComponent from "./Vertex"
+import ClickAction from "./features/clickAction/ClickAction";
 
 function Field(props) {
+    const {clickAction} = props
     const [dragging, setDragging] = useState(null);
     const [vertices, setVertices] = useState([]);
     const [edges, setEdges] = useState([])
@@ -15,10 +17,19 @@ function Field(props) {
         setVertices(copy);
     }
 
-    const fieldClick = (event) => {
-        const x = event.clientX;
-        const y = event.clientY;
-        addVertex({position: [x, y]});
+    const onMouseDown = (event) => {
+        if (clickAction === ClickAction.ADD_VERTEX) {
+            const x = event.clientX;
+            const y = event.clientY;
+            addVertex({position: [x, y]});
+        }
+    }
+
+    const onVertexMouseDown = (event, index) => {
+        event.stopPropagation()
+        if (clickAction === ClickAction.SELECT) {
+            startDrag(event, index)
+        }
     }
 
     const moveVertex = (index, newPosition) => {
@@ -40,16 +51,14 @@ function Field(props) {
     const onMouseMove = (event) => {
         if (dragging !== null) {
             event.preventDefault()
-            const copy = [...vertices]
-            copy[dragging].position = [event.clientX, event.clientY]
-            setVertices(copy)
+            moveVertex(dragging, [event.clientX, event.clientY])
         }
     }
 
     return (
         <div
             className="Field"
-            onMouseDown={fieldClick}
+            onMouseDown={onMouseDown}
             onMouseMove={onMouseMove}
             onMouseUp={stopDrag}
             ref={root}
@@ -58,7 +67,7 @@ function Field(props) {
                 return (<VertexComponent
                     vertex={vertex}
                     key={index}
-                    startDrag={(event) => startDrag(event, index)}
+                    onMouseDown={(event) => onVertexMouseDown(event, index)}
                 />)
             })}
         </div>
