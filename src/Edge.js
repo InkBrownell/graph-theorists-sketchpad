@@ -21,7 +21,7 @@ function Edge(props) {
         const magnitude = Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2))
         const [vx, vy] = [(y2-y1) / magnitude, -(x2-x1) / magnitude]
         const distance = 25 * Math.ceil(multiplicity / 2)
-        const direction = Math.pow(-1, multiplicity) * (vx >= vy ? 1 : -1)
+        const direction = Math.pow(-1, multiplicity) * (vx >= vy ? (vx === vy ? (x1 > x2 ? 1 : -1) : 1) : -1)
         const [midX, midY] = [(x1 + x2)/2, (y1 + y2)/2]
         const [x3, y3] = [midX + (distance * direction * vx), midY + (distance * direction * vy)]
 
