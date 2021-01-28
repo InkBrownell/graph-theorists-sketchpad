@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c34b68e-dd32-4fbd-a3be-3889c6b392a3" name="Default Changelist" comment="Add react-redux dependency" />
+    <list default="true" id="3c34b68e-dd32-4fbd-a3be-3889c6b392a3" name="Default Changelist" comment="Fix flicking when two ve rtices are aligned just so">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="0812b81dba42ee733b18d178ee1a675e99071b80" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MacroExpansionManager">
@@ -28,6 +38,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -36,6 +47,14 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/features/graph" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
@@ -60,7 +79,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607987645912</updated>
-      <workItem from="1607987646961" duration="1141000" />
+      <workItem from="1607987646961" duration="1410000" />
+      <workItem from="1607989103859" duration="332000" />
+      <workItem from="1607989442109" duration="58283000" />
+      <workItem from="1608173573922" duration="2154000" />
+      <workItem from="1609267474315" duration="819000" />
+      <workItem from="1609443610123" duration="36000" />
+      <workItem from="1611874772906" duration="1205000" />
     </task>
     <task id="LOCAL-00001" summary="Add react-redux dependency">
       <created>1607988234966</created>
@@ -69,7 +94,77 @@
       <option name="project" value="LOCAL" />
       <updated>1607988234966</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add vertex manipulation">
+      <created>1608014754898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608014754898</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Remove .eslintcache">
+      <created>1608014884302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608014884302</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add bootstrap import to index.js">
+      <created>1608017322176</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608017322176</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor app to no longer use Redux">
+      <created>1608017348869</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608017348869</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add edge display">
+      <created>1608021258363</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608021258363</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add deletion functionality">
+      <created>1608026452857</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608026452857</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add coloring functionality">
+      <created>1608033370652</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608033370652</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add parallel edge functionality">
+      <created>1608039137536</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608039137536</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add graph info functionality">
+      <created>1608045876926</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608045876926</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix flicking when two vertices are aligned just so">
+      <created>1608047079861</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1608047079861</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,9 +180,20 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add react-redux dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add react-redux dependency" />
+    <MESSAGE value="Add vertex manipulation" />
+    <MESSAGE value="Remove .eslintcache" />
+    <MESSAGE value="Add bootstrap import to index.js" />
+    <MESSAGE value="Refactor app to no longer use Redux" />
+    <MESSAGE value="Add edge display" />
+    <MESSAGE value="Add deletion functionality" />
+    <MESSAGE value="Add coloring functionality" />
+    <MESSAGE value="Add parallel edge functionality" />
+    <MESSAGE value="Add graph info functionality" />
+    <MESSAGE value="Fix flicking when two vertices are aligned just so" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix flicking when two vertices are aligned just so" />
   </component>
 </project>
